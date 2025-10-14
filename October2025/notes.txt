@@ -1,72 +1,9 @@
-If our solution needs to be accurate to 10 decimal places, that gives 1,000,000,000 options. 
+If our solution needs to be accurate to 10 decimal places, that gives 10,000,000,000 options. 
 If we try an accuracy of 2 decimal places, that gives 100 options. So we could maybe try all 100 options, and then our 10 decimal precision will be narrowed down to less of a search space.
 
 So we can look at different values for p, and then the pitcher and batter will have optimal strategies based on that p. These optimal strategies will result in expected values for our at-bat balls/strikes count. So we need to establish a p that then leads to optimal strategies that result in full at-bat counts.
 
 Lets say p = 0  so the batter never hits a homerun even if they swing at a strike. Then the pitcher can just always throw 3 strikes and the score will always be 0 and the full-count probability is 0.
-
-
-
-Define E = balls,strikes  as the event that the count is balls, strikes
-Define probability t as the probability the pitcher throws a strike
-Define probability s as the probability the batter swings
-
-We are 'observing' the count after a pitch is thrown and swung or not swung at. So the result is recorded after the count is recorded... 
-if the count is 3,2 then the result must be continue in order for it to be a true full count. A recorded count of 3,2 and a result of
-score+4 represents that the count was 3,1 and then on the second strike thrown, the batter hit a homerun, so a full count wasn't actually
-reached. So, event 20 is exactly the event we want to maximize.
-
-let [(1-t)*(1-s)] = x                          x corresponds to a ball being recorded
-let [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = y    y corresponds to a strike being recorded
-let [(t)*(s)*(p)] = z                          z corresponds to a homerun being hit
-
-Possibilities for E:
-Event number        Ball             Strike       Result         Probability
------------------------------------------------------------------------------
-1                    1                0            continue       [(1-t)*(1-s)] = x
-2                    2                0            continue       [(1-t)*(1-s)]^2 = x^2
-3                    3                0            continue       [(1-t)*(1-s)]^3 = x^3
-4                    4                0            score +1       [(1-t)*(1-s)]^4 = x^4
-5                    0                1            continue       [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = y
-6                    0                1            score +4       [(t)*(s)*(p)] = z
-7                    1                1            continue       [(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = x*y
-8                    1                1            score +4       [(1-t)*(1-s)]*[(t)*(s)*(p)] = x*z
-9                    2                1            continue       [(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = x^2*y
-10                   2                1            score +4       [(1-t)*(1-s)]^2*[(t)*(s)*(p)] = x^2*z
-11                   3                1            continue       [(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = x^3*y
-12                   3                1            score +4       [(1-t)*(1-s)]^3*[(t)*(s)*(p)] = x^3*z
-13                   4                1            score +1       [(1-t)*(1-s)]^4*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)] = x^4*y
-14                   0                2            continue       [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2 = y^2
-15                   0                2            score +4       [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)] = y*z
-16                   1                2            continue       [(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2 = x*y^2
-17                   1                2            score +4       [(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)] = x*y*z
-18                   2                2            continue       [(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2 * x^2*y^2
-19                   2                2            score +4       [(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)] = x^2*y*z
-20                   3                2            continue       [(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2 = x^3*y^2
-21                   3                2            score +4       [(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)] = x^3*y*z
-22                   4                2            score +1       [(1-t)*(1-s)]^4*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2 = x^4*y^2
-23                   0                3            score +0       [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^3 = y^3
-24                   0                3            score +0       [(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^3 = y^3
-25                   1                3            score +0       [(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^3 = x*y^3
-26                   1                3            score +4       [(1-t) *(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)] = x*y^2*z
-27                   2                3            score +0       [(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^3 = x^2*y^3
-28                   2                3            score +4       [(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)] = x^2*y^2*z
-29                   3                3            score +0       [(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^3 = x^3*y^3
-30                   3                3            score +4       [(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)] = x^3*y^2*z
-
-events that have result 'continue' represent at bats that have not ended yet. An at bat must end, so only events with 'score +__' represent final outcomes.
-
-E[SCORE] = 0*[P(E=23)+P(E=24)+P(E=25)+P(E=27)+P(E=29)] +
-           1*[P(E=4)+P(E=13)+P(E=22)] +
-           4*[P(E=6)+P(E=8)+P(E=10)+P(E=12)+P(E=15)+P(E=17)+P(E=19)+P(E=21)+P(E=26)+P(E=28)+P(E=30)]
-         =  P(E=4)+P(E=13)+P(E=22)+4*[P(E=6)+P(E=8)+P(E=10)+P(E=12)+P(E=15)+P(E=17)+P(E=19)+P(E=21)+P(E=26)+P(E=28)+P(E=30)]
-
-=
-([(1-t)*(1-s)]^4+[(1-t)*(1-s)]^4*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]+[(1-t)*(1-s)]^4*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2)+4([(t)*(s)*(p)]+[(1-t)*(1-s)]*[(t)*(s)*(p)]+[(1-t)*(1-s)]^2*[(t)*(s)*(p)]+[(1-t)*(1-s)]^3*[(t)*(s)*(p)]+[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)]+[(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)]+[(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)]+[(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]*[(t)*(s)*(p)]+[(1-t)*(1-s)]*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)]+[(1-t)*(1-s)]^2*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)]+[(1-t)*(1-s)]^3*[(t)*(1-s)+(t)*(s)*(1-p)+(1-t)*(s)]^2*[(t)*(s)*(p)])
-= (x^4)+(x^4*y)+(x^4*y^2)+(4*((z)+(x*z)+(x^2*z)+(x^3*z)+(y*z)+(x*y*z)+(x^2*y*z)+(x^3*y*z)+(x*y^2*z)+(x^2*y^2*z)+(x^3*y^2*z)))
-
-
-The pitcher wants to minimize E[SCORE] while the batter wants to maximize E[SCORE].
 
 
 Nash Equilibrium for optimal mixed strategies based on https://www.youtube.com/watch?v=tDQ4_W3eUiw.
@@ -88,9 +25,10 @@ From the batter's perspective, if the pitcher throws a strike, the batter should
 Because if it is known the pitcher throws a strike, the batter doesn't need to worry about his chance of hitting a homerun, he should swing no matter what since 
 if he doesn't swing he gets a strike anyway.
 
-Our game is zero sum.
-So we have no pure strategy Nash equilibrium. We need a mixed strategy. We can consider our game as just one instance of at bats. The game either ends in a score of 0, 1, or 4.
-So the game is finite, we don't need to worry about "infinite number of at bats" because each at bat can just be considered the game itself. We have two players, fixed rules, and a
+-Our game is zero sum.
+-We have no pure strategy Nash equilibrium. We need a mixed strategy.
+-We can consider our game as just one instance of at bats. The game either ends in a score of 0, 1, or 4.
+-So the game is finite, we don't need to worry about "infinite number of at bats" because each at bat can just be considered the game itself. We have two players, fixed rules, and a
 declared winner or loser.
 
 Since our game is zero sum, we have the following, based on https://www3.nd.edu/~apilking/math10170/information/Lectures/16%20Optimal%20Mixed%20Strategy.pdf
@@ -108,19 +46,26 @@ PITCHER		    |_____________|_____________|
 
 
 Where the matrix [[a,b],[c,d]] is the payoff matrix for the pitcher. Since we are zero sum, the payoff matrix for the Batter will be [[-a,-b],[-c,-d]].
+
 [t,1-t] * [[a,b],[c,d]] * [s,1-s] = (ad-bc)/(a-b-c+d) - (a-b-c+d)*(t - (d-c)/(a-b-c+d))*(s - (d-b)/(a-b-c+d))
+
 We want to set t so that the choice of s can't affect the expected value for the pitcher, and we want to set a s vice versa.
+
 t = (d-c)/(a-b-c+d)   s = (d-b)/(a-b-c+d)
+
 And we know b=c because if a ball is thrown and the batter swings, a strike is recorded, and if a strike is thrown and the batter doesn't swing a strike is recorded. Same payoff. So,
+
 t = (d-b)/(a-2b+d)   s = (d-b)/(a-2b+d)
+
 So, t = s = (d-b)/(a-2b+d)
+
 
 Now we need to decide what the payoff values (a,b,d) are. We have two variables strikeCount and ballCount that influence the Score in the end. 
 If we are on the first pitch, the count is (0,0) representing 0 balls and 0 strikes. If b (or c, since c=b) occurs, then we advance to the count (0,1). If d occurs, we advance to the count (1,0). 
 If 'a' occurs, with probability p the game ends and the score is 4, and with probability 1-p we advance to the count (0,1). 
 Then for the second pitch, the same logic holds except instead of being at count (0,0) we will either be at count (0,1) or (1,0), and the advancements will result in (1,1) or (0,2) or (2,0).
 
-We have the following possible states for any at bat (game):
+We have the following possible states for the game (at bat):
 (0,0)   (0,1)   (0,2)   (0,3)
 (1,0)   (1,1)   (1,2)   (1,3)
 (2,0)   (2,1)   (2,2)   (2,3)
@@ -157,7 +102,7 @@ So our payoff matrix can be constructed like this:
 We can assign/examine the expected value of our final score for each state, and this will correspond to our payoff matrix.
 
 Define W(a,b) := the expected score of S at state (a,b).
-So     W(4,b) = 1 for any b  and W(a,3) = 0 for any a      also note that W(4,3) is undefined, this state can never happen.
+So     W(4,b) = 1 for any b  and W(a,3) = 0 for any a      also W(4,3) is undefined, this state can never happen.
 
                    	            BATTER
  	     		  (s)                  (1-s)
@@ -205,8 +150,11 @@ At count (3,2):
  		    |_____________________|______________|
 
 Now we preform the Nash equilibrium calculations to find optimal mixed strategies, based on https://www.youtube.com/watch?v=tDQ4_W3eUiw:
+
 We get optimal mixed strategies t = s = (1)/(4p+1). 
+
 the expected value of our game is given by (ad-b^2)/(a-2b+d) = 4p/(4p+1)
+
 We should also keep track of our optimal mixed strategies along side our expected values.
 So we can further fill out our table:
 
@@ -227,42 +175,6 @@ opt(2,0)     opt(2,1)     opt(2,2)
 opt(3,0)     opt(3,1)     opt(3,2)= [(1)/(4p+1),(1)/(4p+1)]
 
 So we can fill out our tables in terms of p by working backwards through the table using values we already filled in.
-Note our entire event table E with probabilities of events occurring won't hold because our strategies vary depending on our counts, so reaching 3 balls and 2 strikes will depend on the paths/counts before getting there. 
-Throw away table E.
-
-
-
-
-
-
-Many different calculations point to t always equaling s, meaning the probability the pitcher should throw a strike and the probability the batter should swing should always be equal, regardless of what p is. 
-This seems like a strong equality, or a strong assumption, but through many different views of the problem, t always seems to equal s no matter what.
-The best reasoning that validates this is that in any case that p does not equal zero, our payoff matrix will have a non zero value for the strike,swing decision. But when p=0, the strike,swing decision has a payoff of 0. 
-This results in the payoff matrix  for p=0 being:
-
-                   	            BATTER
- 	     		  (s)                  (1-s)
-    	    		 swing               don't swing
- 	 	     _____________________ ______________
- 		    |                     |              |
- 	 (t) strike |          0          |   W(a,b+1)   |
-  PITCHER           |_____________________|______________|
- 		    |                     |              |
- 	(1-t) ball  |    W(a,b+1)         |   W(a+1,b)   |
- 		    |_____________________|______________|
-
-And working backwards from W(4,b)=1 and W(a,3)=0 , the pitcher will always prefer to throw a strike and guarantee an expected score of 0 given that p=0. But if p does not equal 0, the pitcher can not always prefer to throw a strike, even if p is very small. And since payout of bottom left entry is always the same as top right entry, we end up with equations:  
-ta+b-tb=tb+d-td
-sa+b-bs=sb+d-sd
-
-which always results in t=s if a+d does not equal 0, and a+d = 0 can never happen since d is always positive and a is never negative. 
-
-
-
-
-
-
-
 
 
 So now given any value p, we have a table that shows the optimal mixed strategies for the pitcher and batter at any possible count (a,b) = balls,strikes , as well as a table that shows the expected score for the end of the
@@ -282,8 +194,8 @@ P[2,0]       P[2,1]        P[2,2]       P[2,3]
 P[3,0]       P[3,1]        P[3,2]       P[3,3]
 P[4,0]       P[4,1]        P[4,2]       XXXXXX
 
-P[0,0] = 1 because we start here at count (0,0) where no pitches were thrown.
-we know that opt(a,b) = t = s  and 1-opt(a,b) = 1-t = 1-s.
+P[0,0] = 1 because we start here at count (0,0) where no pitches were thrown and we must throw at least one pitch.
+we know that opt(a,b) = t = s  and 1-opt(a,b) = 1-t = 1-s  for t's and t's of that specific count.
 
 P[a,b]:
 
@@ -295,8 +207,11 @@ P[4,0]                      P[4,1]                                              
 
 
 Where P[0,0] = 1 because we always have the first pitch thrown.
+
 P[1,0] = (1-opt(0,0))^2  this is the probability the pitcher threw a ball on the first pitch and the batter did not swing, corresponding to a ball.
-P[0,1] = opt(0,0)*(1-opt(0,0))+(1-opt(0,0))*opt(0,0)+(1-p)*opt(0,0)^2  = (2)(opt(0,0))*(1-opt(0,0))+(1-p)*opt(0,0)^2 this is the probability the pitcher threw a strike and the batter didn't swing, or the pitcher threw a ball and the batter swung, or a pitcher threw a strike and the batter swung and did not hit a homerun.
+
+P[0,1] = opt(0,0)*(1-opt(0,0))+(1-opt(0,0))*opt(0,0)+(1-p)*opt(0,0)^2  = (2)(opt(0,0))*(1-opt(0,0))+(1-p)*opt(0,0)^2 
+this is the probability the pitcher threw a strike and the batter didn't swing, or the pitcher threw a ball and the batter swung, or a pitcher threw a strike and the batter swung and did not hit a homerun.
 
 
 continuing to fill out the table for the first column and first row:
@@ -310,7 +225,7 @@ P[3,0]= P[2,0]*(1-opt(2,0))^2      P[3,1]                                       
 P[4,0]= P[3,0]*(1-opt(3,0))^2      P[4,1]                                                   P[4,2]                                                        XXXXXX
 
 For the first column, the probability is given by the probability that the count above it happened, and the probability that a ball is thrown this pitch.
-For the first row, the probability is given by the probability that the count to the left happened, and the probability that a strike was thrown and swung and missed this pitch.
+For the first row, the probability is given by the probability that the count to the left happened, and the probability that a strike was thrown and swung at and missed this pitch.
 
 Now for the inner probabilities in the table:
 count(1,1) means either the 1st pitch resulted in a strike (0,1) and now a ball is recorded, or the 1st pitch resulted in a ball (1,0) and now a strike is recorded.
@@ -347,48 +262,11 @@ P[4,1]= P[3,1]*((1-opt(3,1))^2)+P[4,0]*((2)(opt(4,0))*(1-opt(4,0))+(1-p)*opt(4,0
 P[4,2]= P[3,2]*((1-opt(3,2))^2)+P[4,1]*((2)(opt(4,1))*(1-opt(4,1))+(1-p)*opt(4,1)^2)
 
 
-
-
 Now given a value p, we can fill out table W, allowing us to fill out table OPT, allowing us to fill out table P, giving us our value of P[3,2].
-
-Our tables for W, OPT, and P should all be exact values. The only estimation or room for error will come from guessing p, but given a guess of p, our calculations should be exact.
-
-
-
-Running trials with W,OPT,P and values for p:
-
-with p to 1 decimal places of accuracy (p is in range [0.0,0.1,0.2,...,1.0]
-highest Probability for full count:  0.298223002907405   occurred with homerun probability p=  0.2
-
-with p to 2 decimal places of accuracy (p is in range [0.00, 0.01, 0.02, ... ,1.00]
-highest Probability for full count:  0.300285675510754   occurred with homerun probability p=  0.23
-
-with p to 3 decimal places of accuracy (p is in range [0.000, 0.001, 0.002, ... ,1.000]
-highest Probability for full count:  0.300303879620556   occurred with homerun probability p=  0.227
-
-with p to 4 decimal places of accuracy (p is in range [0.0000, 0.0001, 0.0002, ... ,1.0000]
-highest Probability for full count:  0.300304257450467   occurred with homerun probability p=  0.2274
-
-Suggests that our p is somewhere between 0.2 and 0.3 , and our full count probability is close to 0.3
-So we can narrow our search space of p down to just 0.2 and 0.3.
-
-continuing trials with a narrower search space:
-
-with p to 5 decimal places of accuracy (p is in range [0.20000,0.20001,0.20002, ... ,.30000]
-highest Probability for full count:  0.300304259142193   occurred with homerun probability p=  0.22737
+So we need to plug in values of p until we find the best value.
 
 
 
 
 
-Lets also try working on coming up with a closed form solution or equation that we can plug p directly into or just one shot and find the best value for p.
 
-P[3,2]= P[2,2]*((1-opt(2,2))^2)+P[3,1]*((2)(opt(3,1))*(1-opt(3,1))+(1-p)*opt(3,1)^2)
-      =(P[1,2]*((1-opt(1,2))^2)+P[2,1]*((2)(opt(2,1))*(1-opt(2,1))+(1-p)*opt(2,1)^2))*((1-opt(2,2))^2)+P[3,1]*((2)(opt(3,1))*(1-opt(3,1))+(1-p)*opt(3,1)^2)
-      =((P[0,2]*((1-opt(0,2))^2)+P[1,1]*((2)(opt(1,1))*(1-opt(1,1))+(1-p)*opt(1,1)^2))*((1-opt(1,2))^2)+P[2,1]*((2)(opt(2,1))*(1-opt(2,1))+(1-p)*opt(2,1)^2))*((1-opt(2,2))^2)+P[3,1]*((2)(opt(3,1))*(1-opt(3,1))+(1-p)*opt(3,1)^2)
-      =(((P[0,1]*((2)(opt(0,1))*(1-opt(0,1))+(1-p)*opt(0,1)^2 )*((1-opt(0,2))^2)+P[1,1]*((2)(opt(1,1))*(1-opt(1,1))+(1-p)*opt(1,1)^2))*((1-opt(1,2))^2)+P[2,1]*((2)(opt(2,1))*(1-opt(2,1))+(1-p)*opt(2,1)^2))*((1-opt(2,2))^2)   
-       +P[3,1]*((2)(opt(3,1))*(1-opt(3,1))+(1-p)*opt(3,1)^2)
-      =(((((2)(opt(0,0))*(1-opt(0,0))+(1-p)*opt(0,0)^2 ) *((2)(opt(0,1))*(1-opt(0,1))+(1-p)*opt(0,1)^2 )*((1-opt(0,2))^2)+P[1,1]*((2)(opt(1,1))*(1-opt(1,1))+(1-p)*opt(1,1)^2))*((1-opt(1,2))^2)+P[2,1]*((2)(opt(2,1))
-       *(1-opt(2,1))+(1-p)*opt(2,1)^2))*((1-opt(2,2))^2)   
-       +P[3,1]*((2)(opt(3,1))*(1-opt(3,1))+(1-p)*opt(3,1)^2)
-      =
