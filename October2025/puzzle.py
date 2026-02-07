@@ -1,7 +1,3 @@
-
-
-
-
 #Finds optimal mixed strategy and expected score for a p,
 #based on the expected value resulting from going to the next strike count (W_a_bplus1)
 #and the the expected value resulting from going to the next ball count (W_aplus1_b)
@@ -32,7 +28,7 @@ def compute(p):
 		return [v,t]
 
 	#Fill our expected value of scores matrix. We go backwards since we know last column is all 0s and last row is all 1s.
-	#Opt matrix shape "fits into" the top left portion of the W matrix we iterate over.
+	#Opt matrix shape "fits into" the top left portion of the W matrix we iterate over. (even though they aren't same dimension)
 	for row in range(len(W)-2,-1,-1):
 		for col in range(len(W[row])-2,-1,-1):
 			W[row][col],OPT[row][col] = SolveTable(W[row][col+1],W[row+1][col])
@@ -79,10 +75,10 @@ def Trial(br, tr, per):
 
 	return(best, bestP)
 
-
 # We want 10 decimal places of accuracy which is 10,000,000,000 disctinct options for p.
 # if we start from p=0 we get division by 0 errors. But we know p won't be 0 so we can just start from bottom range + 1.
 # Our top range is exclusive so we need to go to topRange+1
+# Theres ways we could automate prunning for this value but lets just 'semi-manually' do it...
 
 #print(Trial(1,101,100)) # ->                       (0.29594350457912, 0.23)        fast
 #print(Trial(1,1001,1000)) # ->                     (0.29596799145239616, 0.227)    fast
@@ -91,6 +87,7 @@ def Trial(br, tr, per):
 #print(Trial(1,10000001,10000000)) # ->             (0.2959679933742692, 0.2269732) slow
 #print(Trial(224443000,229503010,1000000000)) # ->  (0.2959679933742721, 0.226973229) slow, but accurate up to 12 decimal places.
 
-#Final answer: 0.2959679934
+#Final probabilty for homerun:    0.226973229
+#Final probabilty for full count: 0.2959679933742721
 
 print("Maximum probability count reaches (3,2): ", compute(0.226973229))
