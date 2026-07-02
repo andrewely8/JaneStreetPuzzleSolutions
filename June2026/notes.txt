@@ -1,0 +1,129 @@
+PUZZLE TITLE: regional-artwork
+
+frequent Frazier foe
+type of magazine you might start getting in your 20's
+arguably, the story of our time (and a hint to answering all the ITALIC{other} clues...)
+stage name of a famous skeptic (with "The")
+Oscar-winning role from the 80's
+often-inset pair, for short
+microwaveable snack brand that replaced a refrigerated product
+where to find "take thou this vial" and "double, double toil and trouble"
+you might break it in Kabul
+eponym of multiple continents (REDTEXT{and the answer that should come last after sorting})
+onetime Outkast output
+notable 2026 launch
+the present, in the past
+our nearest neighbors, in some sense (though we haven't visited yet...)
+
+BOLD{The answers to these clues need sorting!} Move them into their proper locations, then use those moves to populate the final clue, below.
+
+_  _   _   _   _  _    _   _  _   _   _    _  _  _
+7  8  10  15  12  9    13  6  11  3  14    4  2  5
+
+
+
+
+
+
+SOLVING:
+1. frequent Frazier foe  
+2. type of magazine you might start getting in your 20's
+3. arguably, the story of our time (and a hint to answering all the other clues...)
+4. stage name of a famous skeptic (with "The")
+5. Oscar-winning role from the 80's
+6. often-inset pair, for short 
+7. microwaveable snack brand that replaced a refrigerated product
+8. where to find "take thou this vial" and "double, double toil and trouble" -- William Shakespeare
+9. you might break it in Kabul 
+10. eponym of multiple continents (and the answer that should come last after sorting) -- Amerigo Vespucci
+11. onetime Outkast output
+12. notable 2026 launch
+13. the present, in the past 
+14. our nearest neighbors, in some sense (though we haven't visited yet...)
+
+brainstorming answers for each clue,
+1. Muhammed Ali
+2. NYT                
+3. Robert Atkinson, Artificial Intelligence, Christopher Hitchens          
+4. Amazing Randi   
+5. Dustin Hoffman, Robert De Niro, Henry Fonda, Ben Kingsley, Robert Duvall, F. Murray Abraham, William Hurt, Paul Newman, 
+   Michael Douglas
+6. (AL, HI)
+7. Hot Pockets            
+8. William Shakespeare
+9.  Break Fast (Ramadan) , Pul (coin type), Afghani (dollar type).
+10. Amerigo Vespucci
+11. In Due Time by Outkast, Da Art of Storytellin' by Outkast
+12. Artemis Two
+13. The Future
+14. Proxima Centauri
+
+_  _   _   _   _  _    _   _  _   _   _    _  _  _
+7  8  10  15  12  9    13  6  11  3  14    4  2  5
+
+
+Maybe final answer is take the number under the blank letter from each clue in order from 1st to 14th clue.
+We have 14 blanks, each blank has a number under it, so maybe first blank gets assigned the 7th letter in first clues answer, etc. But answers require sorting, so maybe there is a step of reordering the clues answers prior to doing this assignment...
+
+Since the title of the puzzle is "regional artwork", maybe the answers to the clues have something to do with areas in the world or states or cities in America. Clue 1 is "Frequent Frazier foe" which seems to definitely have the answer "Muhammed Ali". So this may become "MA" (Massachusetts) or maybe it becomes "KY" (Kentucky), where he was born.
+   MA = "Massachuests", the famous painter Norman Rockwell is associated with Massachusetts. 
+
+Clue 4. seems to definitely have the answer "The Amazing James Randi", which could become "AR" meaning Arkansas.
+   the painter Adrian Louis Brewer is associated with Arkansas
+
+But clue 8. seems to definetly have the answer William Shakespear, but WS is not a US state abbreivation.
+
+Clue 3 is important because it has an additional hint that says it is a clue for solving the rest of the puzzle. Arguably, some may say Artificial Intelligence is the story of our time. Our answers Muhammed Ali, Amazing Randi, Artemis Two, the ones that seem definetly right, all have "a" and "i" in them. If we change Muhammed Ali to just "Ali" and Artemis Two to Artemis II, then all our answers might start with an A and end with an I. Also Alumni is a type of magezine you can get after college so maybe that works for clue 2. Also Aquemeni is an Outkast album. And Alpha Centauri is another name for Proxima Centauri.
+
+Another big discovery is that the brand called Act II is a popcorn brand that replaced Act I which had to be refridgerated so clue 7 is definetly going to be "Act II"
+
+ Or maybe our answers have an A in them and an I in them, and we read the letter between the A and the I and that gives more clues or hints relating to states or artworks.
+
+picking answers that are related to the clues but start with an A and end with an I or at least have an A and an I in them.
+
+1.  Ali
+2.  Alumni
+3.  AI
+4.  Amazing Randi
+5.  Antonio Salieri
+6.  AL,HI
+7.  Act II
+8.  Act IV Scene I
+9.  Afghani
+10. Amerigo Vespucci
+11. Aquemini
+12. Artemis II
+13. Anno Domini
+14. Alpha Centauri
+
+Now we can sort based on length of the answer. We can take the number under each blank in the answer clue, and find the word of that numbers length. Then we look at the number of spaces we moved from that length word from its original position, and take that letter to be the blank.
+
+(length of word)  ORIGINAL POSITION           ANSWER                        NUM SPACES MOVED      LETTER
+2			3. 			AI                                 2                 I
+3			1.  			Ali                                1                 A
+4			6.  			AL,HI                              3                 H
+5			7. 			Act II                             3                 T
+6			2.  			Alumni                             3                 U
+7			9.  			Afghani                            3                 G
+8			11. 			Aquemini                           4                 E
+9			12. 			Artemis II                         4                 E
+10			13. 			Anno Domini                        4                 O
+11			8.  			Act IV Scene I                     2                 C
+12			4.  			Amazing Randi                      7                 G
+13			14. 			Alpha Centauri                     2                 L
+14			5.  			Antonio Salieri                    8                 S
+15			10. 			Amerigo Vespucci                   4                 R
+
+
+_  _    _   _   _  _    _   _  _    _    _    _   _    _
+7  8   10  15  12  9    13  6  11   3   14    4   2    5
+
+G   E   O   R   G  E     L  U   C   A    S    H   I    T
+
+GEORGE LUCAS HIT
+= Star wars
+
+
+
+
+
