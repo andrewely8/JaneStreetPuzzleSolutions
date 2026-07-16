@@ -127,3 +127,27 @@ GEORGE LUCAS HIT
 
 
 
+
+
+
+
+
+3			1.  			Ali                                1                 A
+6			2.  			Alumni                             3                 U
+2			3. 			AI                                 2                 I
+12			4.  			Amazing Randi                      7                 G
+14			5.  			Antonio Salieri                    8                 S
+4			6.  			AL,HI                              3                 H
+5			7. 			Act II                             3                 T
+11			8.  			Act IV Scene I                     2                 C
+7			9.  			Afghani                            3                 G
+15			10. 			Amerigo Vespucci                   4                 R
+8			11. 			Aquemini                           4                 E
+9			12. 			Artemis II                         4                 E
+10			13. 			Anno Domini                        4                 O
+13			14. 			Alpha Centauri                     2                 L
+
+
+
+
+
