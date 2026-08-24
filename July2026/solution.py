@@ -87,7 +87,7 @@ board[7][0]['num'] = 0
 #Move up: multiply current score by moveNumber
 #
 #Moving down must result in an evenly divisble operation
-#Moving 
+#
 def getPossibleMoves(currentCell,currentMoves):
 	currentScore = currentCell['num']
 	currentMoveNumber = len(currentMoves)
@@ -306,3 +306,5 @@ if SOL:
 						finalSum += numMap[(neighbor[0],neighbor[1])]
 
 	print("\n\nFinal Answer: ",finalSum)
+else:
+	print("CANNOT FIND SOLUTION")
